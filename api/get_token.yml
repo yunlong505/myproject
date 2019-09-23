@@ -1,0 +1,19 @@
+name: /api/get-token
+base_url: ${ENV(base_url)}
+variables:
+  device_sn: ${gen_random_string(15)}
+  os_platform: ios
+  app_version: 2.8.6
+request:
+  url: /api/get-token
+  method: POST
+  headers:
+    Content-Type: application/json
+    User-Agent: python-requests/2.18.4
+    app_version: $app_version
+    device_sn: $device_sn
+    os_platform: $os_platform
+  json:
+    sign: ${get_sign($device_sn, $os_platform, $app_version)}
+validate:
+  - eq: ["status_code", 200]

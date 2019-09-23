@@ -1,0 +1,23 @@
+name: creat user
+base_url: ${ENV(base_url)}
+variables:
+  content_type: application/json
+  user_agent: python-requests/2.18.4
+  user_id: 10000
+  device_sn: a
+  token: a
+  name: a
+  password: 'ssssss'
+request:
+  url: /api/users/$user_id
+  method: POST
+  headers:
+    Content-Type: $content_type
+    User-Agent: $user_agent
+    device_sn: $device_sn
+    token: $token
+  json:
+    name: $name
+    password: $password
+validate:
+  - eq: ["status_code", 201]

@@ -1,0 +1,35 @@
+config:
+  name: get token and creat user
+  variables:
+    device_sn: ${gen_random_string(15)}
+    content_type: application/json
+    user_agent: python-requests/2.18.4
+    user_id: 85444
+    name: user1
+    password: '123456'
+teststeps:
+  - name: get token
+    testcase: testcases/setup.yml
+    extract:
+      - token
+
+  - name: creat user
+    api: api/creat_user.yml
+    variables:
+      content_type: $content_type
+      user_agent: $user_agent
+      device_sn: $device_sn
+      token: $token
+      user_id: $user_id
+      name: $name
+      password: $password
+    validate:
+      - eq:
+          - headers.Content-Type
+          - application/json
+      - eq:
+          - content.success
+          - true
+      - eq:
+          - content.msg
+          - user created successfully.

@@ -1,0 +1,15 @@
+config:
+  name: get token and create users with uid
+  base_url: ${ENV(base_url)}
+  variables:
+    device_sn: ${gen_random_string(15)}
+
+testcases:
+  - name: get token
+    testcase: testcases/setup.yml
+
+  - name: creat user
+    testcase: testcases/appoint_api.yml
+    variables:
+      device_sn: $device_sn
+      user_id: 99999

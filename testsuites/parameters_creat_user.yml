@@ -1,0 +1,9 @@
+config:
+  name: parameters creat user
+testcases:
+  create user:
+    testcase: testcases/appoint_api.yml
+    parameters:
+      user_agent: ["iOS/10.1", "iOS/10.2", "iOS/10.3"]
+      user_id: ${P(data/user_id.csv)}
+      name-password: ${get_account(3)}

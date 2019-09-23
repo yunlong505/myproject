@@ -1,0 +1,7 @@
+config:
+  name: testcase description
+testcases:
+  create user:
+    testcase: testcases/demo-quickstart-0.yml
+    parameters:
+      user_id: [1215, 1216, 1217, 1218]
